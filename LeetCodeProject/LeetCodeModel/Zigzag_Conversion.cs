@@ -14,8 +14,34 @@ namespace LeetCodeProject
     {
         public static string Convert(string s, int numRows)
         {
+            var str = s.ToCharArray();
+            if (numRows == 1)return s;
 
-            return "";
+            List<StringBuilder> rows = new List<StringBuilder>(Math.Min(numRows, s.Length));
+            for (int i = 0; i < Math.Min(numRows, s.Length); i++)
+            {
+                rows.Add(new StringBuilder());
+            }
+
+            var direction = -1;
+            var row = 0;
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                rows[row].Append(str[i]);
+                row += (direction == -1)? 1 : -1;
+
+                if (row == 0 || row == numRows - 1)
+                {
+                    direction *= -1;
+                }
+            }
+            var result = new StringBuilder();
+            foreach (var item in rows)
+            {
+                result.Append(item);
+            }
+            return result.ToString();
         }
     }
 
