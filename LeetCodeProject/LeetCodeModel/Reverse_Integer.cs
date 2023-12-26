@@ -14,8 +14,17 @@ namespace LeetCodeProject
     {
         public static int Reverse(int x)
         {
+            var c = x.ToString().ToCharArray();
+            var result  = new StringBuilder();
+            for (int i = c.Length - 1; i >= 0; i--)
+            {
+                if (c[i] == '-') result.Insert(0, c[i]);
+                else result.Append(c[i]);
+            }
+            if(Convert.ToInt64(result.ToString()) > Int32.MaxValue || Convert.ToInt64(result.ToString()) < Int32.MinValue) return 0;
+            var output = Convert.ToInt32(result.ToString());
 
-            return 0;
+            return output;
         }
     }
 
