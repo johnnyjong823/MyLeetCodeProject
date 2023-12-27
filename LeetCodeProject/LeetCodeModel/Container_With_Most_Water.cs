@@ -12,10 +12,26 @@ namespace LeetCodeProject.LeetCodeModel
     /// </summary>
     public class Container_With_Most_Water
     {
-        public int MaxArea(int[] height)
+        public static int MaxArea(int[] height)
         {
+            var max = 0;
+            int left =0,right = height.Length-1;
+            while(left < right)
+            {
+                var area = Math.Min(height[left], height[right]) * (right - left);
+                max = Math.Max(max, area);
+                if (height[left] < height[right])
+                {
+                    left++;
+                }
+                else
+                {
+                    right--;
+                }
+            }
 
-            return 0;
+
+            return max;
         }
     }
 
