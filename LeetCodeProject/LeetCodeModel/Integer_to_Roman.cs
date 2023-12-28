@@ -12,6 +12,42 @@ namespace LeetCodeProject.LeetCodeModel
     /// </summary>
     public class Integer_to_Roman
     {
+        public static string IntToRoman(int num)
+        {
+            var result = "";
+            var roman = new Dictionary<int, string>();
+            roman.Add(1, "I");
+            roman.Add(4, "IV");
+            roman.Add(5, "V");
+            roman.Add(9, "IX");
+            roman.Add(10, "X");
+            roman.Add(40, "XL");
+            roman.Add(50, "L");
+            roman.Add(90, "XC");
+            roman.Add(100, "C");
+            roman.Add(400, "CD");
+            roman.Add(500, "D");
+            roman.Add(900, "CM");
+            roman.Add(1000, "M");
+
+
+            var keys = roman.Keys.OrderByDescending(x => x).ToList();
+            while (num > 0)
+            {
+                for (int i = 0; i < keys.Count; i++)
+                {
+                    if (num >= keys[i])
+                    {
+                        result += roman[keys[i]];
+                        num -= keys[i];
+                        break;
+                    }
+                }
+            }
+
+
+            return result;
+        }
     }
 
     /*
